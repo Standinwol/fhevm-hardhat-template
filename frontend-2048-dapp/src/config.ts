@@ -1,5 +1,5 @@
 // Contract configuration and ABI
-export const CONTRACT_ADDRESS = "0x0000000000000000000000000000000000000000"; // Will be updated after deployment
+export const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS || "0x0000000000000000000000000000000000000000";
 
 export const CONTRACT_ABI = [
   "function buyPlay() external payable",
@@ -30,12 +30,12 @@ export const MILESTONES: Record<number, string> = {
 export const PLAY_COST = "0.01";
 
 // Sepolia testnet configuration
-export const SEPOLIA_CHAIN_ID = 11155111;
-export const SEPOLIA_RPC_URL = "https://sepolia.infura.io/v3/YOUR_INFURA_KEY";
+export const SEPOLIA_CHAIN_ID = parseInt(import.meta.env.VITE_CHAIN_ID || "11155111");
+export const SEPOLIA_RPC_URL = import.meta.env.VITE_SEPOLIA_RPC_URL || "https://ethereum-sepolia.publicnode.com";
 
 // App configuration
 export const APP_CONFIG = {
-  name: "2048 dApp",
-  description: "Play the classic 2048 game on Ethereum and earn ETH rewards!",
+  name: import.meta.env.VITE_APP_NAME || "2048 dApp",
+  description: import.meta.env.VITE_APP_DESCRIPTION || "Play the classic 2048 game on Ethereum and earn ETH rewards!",
   version: "1.0.0",
 };

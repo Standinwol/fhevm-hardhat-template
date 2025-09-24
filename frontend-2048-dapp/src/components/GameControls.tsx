@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { MILESTONES } from "../config";
 
 interface GameState {

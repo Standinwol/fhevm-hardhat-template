@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ethers } from "ethers";
 import { Game2048 } from "./utils/gameLogic";
 import { CONTRACT_ADDRESS, CONTRACT_ABI, MILESTONES, PLAY_COST, SEPOLIA_CHAIN_ID } from "./config";
@@ -10,7 +10,7 @@ import "./index.css";
 
 function App() {
   // Game state
-  const [game, setGame] = useState(new Game2048());
+  const [game] = useState(new Game2048());
   const [gameState, setGameState] = useState(game.getState());
 
   // Web3 state

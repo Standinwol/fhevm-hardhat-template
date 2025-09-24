@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend-2048-dapp/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "frontend-2048-dapp/dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "frontend-2048-dapp/dist/$1"
+    }
+  ],
+  "env": {
+    "REACT_APP_FHEVM_CONTRACT_ADDRESS": "@react_app_fhevm_contract_address",
+    "REACT_APP_SEPOLIA_RPC_URL": "@react_app_sepolia_rpc_url",
+    "REACT_APP_BACKEND_API_URL": "@react_app_backend_api_url"
+  }
+}
