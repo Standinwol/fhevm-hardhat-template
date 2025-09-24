@@ -1,27 +1,27 @@
 {
-  "name": "fhevm-hardhat-template",
-  "description": "Hardhat-based template for developing FHEVM Solidity smart contracts",
+  "name": "2048-dapp",
+  "description": "Decentralized 2048 game on Ethereum",
   "version": "0.1.0",
   "engines": {
     "node": ">=20",
     "npm": ">=7.0.0"
   },
   "license": "BSD-3-Clause-Clear",
-  "homepage": "https://github.com/zama-ai/fhevm-hardhat-template/README.md",
+  "homepage": "https://github.com/Standinwol/2048-dapp/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zama-ai/fhevm-hardhat-template.git"
+    "url": "git+https://github.com/Standinwol/2048-dapp.git"
   },
   "keywords": [
-    "fhevm",
-    "zama",
-    "eth",
+    "2048",
+    "game",
+    "dapp",
     "ethereum",
-    "dapps",
-    "wallet",
+    "blockchain",
     "web3",
     "typescript",
-    "hardhat"
+    "hardhat",
+    "react"
   ],
   "dependencies": {
     "encrypted-types": "^0.0.4",
@@ -78,7 +78,10 @@
     "test": "hardhat test",
     "test:sepolia": "hardhat test --network sepolia",
     "build:ts": "tsc --project tsconfig.json",
-    "typechain": "cross-env TS_NODE_TRANSPILE_ONLY=true hardhat typechain"
+    "typechain": "cross-env TS_NODE_TRANSPILE_ONLY=true hardhat typechain",
+    "deploy": "hardhat deploy",
+    "deploy:sepolia": "hardhat deploy --network sepolia",
+    "verify:sepolia": "hardhat verify --network sepolia"
   },
   "overrides": {
     "ws@>=7.0.0 <7.5.10": ">=7.5.10",

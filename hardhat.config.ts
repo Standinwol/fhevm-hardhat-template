@@ -10,12 +10,14 @@ import { vars } from "hardhat/config";
 import "solidity-coverage";
 
 import "./tasks/accounts";
-import "./tasks/FHECounter";
 
 // Run 'npx hardhat vars setup' to see the list of variables that need to be set
 
-const MNEMONIC: string = vars.get("MNEMONIC", "test test test test test test test test test test test junk");
-const INFURA_API_KEY: string = vars.get("INFURA_API_KEY", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+const PRIVATE_KEY: string = vars.get(
+  "PRIVATE_KEY",
+  "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
+);
+const SEPOLIA_RPC_URL: string = vars.get("SEPOLIA_RPC_URL", "https://ethereum-sepolia.publicnode.com");
 
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
@@ -35,13 +37,13 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {
       accounts: {
-        mnemonic: MNEMONIC,
+        mnemonic: "test test test test test test test test test test test junk",
       },
       chainId: 31337,
     },
     anvil: {
       accounts: {
-        mnemonic: MNEMONIC,
+        mnemonic: "test test test test test test test test test test test junk",
         path: "m/44'/60'/0'/0/",
         count: 10,
       },
@@ -49,13 +51,23 @@ const config: HardhatUserConfig = {
       url: "http://localhost:8545",
     },
     sepolia: {
-      accounts: {
-        mnemonic: MNEMONIC,
-        path: "m/44'/60'/0'/0/",
-        count: 10,
-      },
+      accounts: [PRIVATE_KEY],
       chainId: 11155111,
-      url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
+      url: SEPOLIA_RPC_URL,
+    },
+    fhevm: {
+      accounts: {
+        mnemonic: "test test test test test test test test test test test junk",
+      },
+      chainId: 8009,
+      url: "https://devnet.zama.ai",
+    },
+    localfhevm: {
+      accounts: {
+        mnemonic: "test test test test test test test test test test test junk",
+      },
+      chainId: 412346,
+      url: "http://localhost:8545",
     },
   },
   paths: {
