@@ -294,97 +294,119 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
-      <div className="container mx-auto px-4 max-w-4xl">
-        {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
+      {/* Header with Web3 branding */}
+      <div className="bg-black/20 backdrop-blur-sm border-b border-white/10">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                <span className="text-white text-sm font-bold">⚛</span>
+              </div>
+              <span className="text-white font-semibold">0.000</span>
+              <div className="w-6 h-6 bg-purple-500 rounded-full"></div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                <span className="text-white text-sm font-bold">⚛</span>
+              </div>
+              <span className="text-white font-semibold">Lisk Sepolia Testnet</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        {/* Game Title and Stats */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">🎮 2048 dApp</h1>
-          <p className="text-gray-600">Play the classic 2048 game on Ethereum and earn ETH rewards!</p>
+          <div className="inline-block bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-bold mb-4">
+            Web3 Game
+          </div>
+          <div className="flex items-center justify-center space-x-8 mb-4">
+            <div className="text-8xl font-bold text-white">2048</div>
+            <div className="space-y-4">
+              <div className="bg-yellow-400 text-black px-6 py-3 rounded-lg">
+                <div className="text-sm font-bold">MOVE COUNT</div>
+                <div className="text-2xl font-bold">{gameState.score > 0 ? Math.floor(gameState.score / 10) + 1 : 0}</div>
+              </div>
+              <div className="bg-yellow-400 text-black px-6 py-3 rounded-lg">
+                <div className="text-sm font-bold">PRIZE POOL</div>
+                <div className="text-2xl font-bold">1.041529 ETH</div>
+              </div>
+            </div>
+          </div>
+          <p className="text-white/80 text-lg">Join the tiles, get to 2048!</p>
         </div>
 
         {/* Wallet Connection */}
         {!account ? (
           <div className="text-center mb-8">
-            <button
-              onClick={connectWallet}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
-            >
-              Connect MetaMask Wallet
-            </button>
-            <p className="text-sm text-gray-500 mt-2">Make sure you're on Sepolia testnet</p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <p className="text-white text-lg mb-4">Please connect to your Web3 Wallet of choice...</p>
+              <button
+                onClick={connectWallet}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-xl transition-all transform hover:scale-105"
+              >
+                Connect Wallet
+              </button>
+            </div>
           </div>
         ) : (
-          <WalletInfo account={account} balance={balance} availablePlays={availablePlays} />
+          <div className="mb-8">
+            <WalletInfo account={account} balance={balance} availablePlays={availablePlays} />
+          </div>
         )}
 
         {/* Transaction Status */}
         <TransactionStatus txStatus={txStatus} />
 
         {/* Main Game Area */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="flex flex-col items-center">
           {/* Game Board */}
-          <div className="flex flex-col items-center">
-            <div className="mb-4">
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-lg font-semibold">Score: {gameState.score}</div>
-                <div className="text-lg font-semibold">Best: {gameState.maxTile}</div>
-              </div>
-            </div>
-
+          <div className="mb-8">
             <GameBoard gameState={gameState} />
+          </div>
 
-            <div className="mt-4 text-center">
-              <button
-                onClick={resetGame}
-                className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded transition-colors"
-              >
-                New Game
-              </button>
-              <p className="text-sm text-gray-500 mt-2">Use arrow keys to play</p>
+          {/* Directional Controls */}
+          <div className="grid grid-cols-3 gap-2 mb-8">
+            <div></div>
+            <button className="w-16 h-16 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center text-white text-2xl">
+              ↑
+            </button>
+            <div></div>
+            <button className="w-16 h-16 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center text-white text-2xl">
+              ←
+            </button>
+            <div className="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center text-white text-sm font-bold">
+              RESET
             </div>
-
-            {gameState.gameOver && (
-              <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-                <strong>Game Over!</strong> No more moves possible.
-              </div>
-            )}
+            <button className="w-16 h-16 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center text-white text-2xl">
+              →
+            </button>
+            <div></div>
+            <button className="w-16 h-16 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center text-white text-2xl">
+              ↓
+            </button>
+            <div></div>
           </div>
 
           {/* Game Controls */}
-          <GameControls
-            account={account}
-            gameState={gameState}
-            claimedMilestones={claimedMilestones}
-            loading={loading}
-            onBuyPlay={buyPlay}
-            onClaimReward={claimReward}
-          />
-        </div>
+          {account && (
+            <GameControls
+              account={account}
+              gameState={gameState}
+              claimedMilestones={claimedMilestones}
+              loading={loading}
+              onBuyPlay={buyPlay}
+              onClaimReward={claimReward}
+            />
+          )}
 
-        {/* Instructions */}
-        <div className="mt-8 bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-bold mb-4">How to Play & Earn</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-semibold mb-2">🎯 Game Rules</h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Use arrow keys to move tiles</li>
-                <li>• Tiles with same numbers merge when they touch</li>
-                <li>• Try to reach 2048, 4096, or 8192 tiles</li>
-                <li>• Game ends when no moves are possible</li>
-              </ul>
+          {gameState.gameOver && (
+            <div className="mt-6 p-6 bg-red-500/20 border border-red-500/50 text-red-300 rounded-xl backdrop-blur-sm">
+              <strong>Game Over!</strong> No more moves possible.
             </div>
-            <div>
-              <h4 className="font-semibold mb-2">💰 Earning Rewards</h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Buy play attempts for 0.01 ETH each</li>
-                <li>• Reach 2048 → claim 0.001 ETH</li>
-                <li>• Reach 4096 → claim 0.005 ETH</li>
-                <li>• Reach 8192 → claim 0.01 ETH</li>
-                <li>• Each milestone can only be claimed once</li>
-              </ul>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

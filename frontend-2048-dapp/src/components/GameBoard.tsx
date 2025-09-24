@@ -26,13 +26,13 @@ const GameBoard = ({ gameState }: GameBoardProps) => {
   };
 
   return (
-    <div className="game-container">
-      <div className="game-grid" style={{ width: "320px", height: "320px" }}>
+    <div className="relative">
+      <div className="game-grid bg-gray-800 rounded-xl p-4 shadow-2xl" style={{ width: "400px", height: "400px" }}>
         {/* Background grid */}
         {Array(16)
           .fill(0)
           .map((_, index) => (
-            <div key={`bg-${index}`} className="game-cell"></div>
+            <div key={`bg-${index}`} className="game-cell bg-gray-700 rounded-lg"></div>
           ))}
 
         {/* Game tiles */}
@@ -60,7 +60,7 @@ const GameBoard = ({ gameState }: GameBoardProps) => {
         return (
           <div
             key={`achievement-${milestone}`}
-            className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-bounce"
+            className="absolute -top-4 -right-4 bg-gradient-to-r from-green-400 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-bounce shadow-lg"
           >
             🎉 {milestone} Reached!
           </div>

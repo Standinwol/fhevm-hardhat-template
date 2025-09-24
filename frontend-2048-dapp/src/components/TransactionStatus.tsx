@@ -16,13 +16,13 @@ const TransactionStatus = ({ txStatus }: TransactionStatusProps) => {
   const getStatusClass = () => {
     switch (txStatus.type) {
       case "success":
-        return "bg-green-100 border-green-400 text-green-700";
+        return "bg-green-500/20 border-green-400 text-green-300";
       case "error":
-        return "bg-red-100 border-red-400 text-red-700";
+        return "bg-red-500/20 border-red-400 text-red-300";
       case "pending":
-        return "bg-yellow-100 border-yellow-400 text-yellow-700";
+        return "bg-yellow-500/20 border-yellow-400 text-yellow-300";
       default:
-        return "bg-gray-100 border-gray-400 text-gray-700";
+        return "bg-white/10 border-white/20 text-white";
     }
   };
 
@@ -40,7 +40,7 @@ const TransactionStatus = ({ txStatus }: TransactionStatusProps) => {
   };
 
   return (
-    <div className={`mb-6 p-4 border rounded-lg ${getStatusClass()}`}>
+    <div className={`mb-6 p-4 border rounded-xl backdrop-blur-sm ${getStatusClass()}`}>
       <div className="flex items-start space-x-3">
         <div className="text-xl">{getIcon()}</div>
         <div className="flex-1">
@@ -51,7 +51,7 @@ const TransactionStatus = ({ txStatus }: TransactionStatusProps) => {
                 href={`https://sepolia.etherscan.io/tx/${txStatus.hash}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm underline hover:no-underline"
+                className="text-sm underline hover:no-underline text-white/80 hover:text-white"
               >
                 View on Etherscan: {txStatus.hash.slice(0, 10)}...{txStatus.hash.slice(-8)}
               </a>
